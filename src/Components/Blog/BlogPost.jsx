@@ -47,7 +47,7 @@ function BlogPost({title, content, author, date}) {
     };
 
     return (
-        <div class='postContainer'>
+        <div className='postContainer'>
             {loading ? //If loading show text for loading instead of content.
             (<p>Loading</p>) : (<>
                 <Content

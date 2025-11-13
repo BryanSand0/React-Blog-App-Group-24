@@ -6,7 +6,7 @@ import './CommonLayout.css';
 
 function CommonLayout() {
   return (
-    <div class='Layout'>
+    <div className='Layout'>
         <Header />
         <Outlet />
         <Footer />

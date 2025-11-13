@@ -3,7 +3,7 @@ import './Homepage.css'
 
 function Homepage() {
   return (
-    <div class='Home'>Homepage</div>
+    <div className='Home'>Homepage</div>
   )
 }
 
