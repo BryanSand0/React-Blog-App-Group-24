@@ -1,0 +1,17 @@
+/* Comment form */
+.comment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.comment-form input,
+.comment-form textarea {
+    padding: 0.5rem;
+    font-family: inherit;
+}
+
+.comment-form textarea {
+    min-height: 60px;
+}
