@@ -1,0 +1,20 @@
+/* Post list container */
+.post-list-container {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Individual post link */
+.postListing { 
+    list-style-type: none;
+    margin: 1rem 0;
+    max-width: 40rem;
+}
+
+.postList { 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
