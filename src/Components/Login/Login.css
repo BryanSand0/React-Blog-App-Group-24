@@ -1,0 +1,36 @@
+
+
+.login { 
+    padding: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login button { 
+    margin-top: 2rem;
+}
+
+.loginInBanner { 
+    font-size: 3.5rem;
+    color: #ffffff;
+    margin-bottom: 1rem;
+}
+
+.loginFlavorText {
+    font-size: 1.7rem;
+    color: var(--secondary-text-color);
+    margin-bottom: 1rem;
+}
+
+.loginForm { 
+    width: 50%;
+    color: var(--secondary-text-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.enterLoginInfo { 
+    margin-top: 1rem;
+}

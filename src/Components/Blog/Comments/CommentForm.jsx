@@ -1,17 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useState } from 'react';
 import './CommentForm.css'
+import { AccountContext } from '../../../Context/AccountContextProvider';
 
 function CommentForm({ onAddComment }) {
     // State for what user is currently typing
-    const [currentName, setCurrentName] = useState("");
+    //const [currentName, setCurrentName] = useState("");
     const [currentComment, setCurrentComment] = useState("");
+
+    //We only get account name cause this shoudnt be shown UNLESS logged in
+    const { accountName } = useContext(AccountContext);
 
     // Function that runs when submit button is clicked
     const handleSubmit = (e) => {
         // Create a new comment object
         const newComment = {
-            name: currentName,
+            //name: currentName,
+            name: accountName,
             comment: currentComment
         };
 
@@ -20,7 +25,7 @@ function CommentForm({ onAddComment }) {
         // Call the function that the parent passed to us
         onAddComment(newComment);
         // Clear the input fields for next comment
-        setCurrentName("");
+        //setCurrentName("");
         setCurrentComment("");
     };
 
@@ -30,12 +35,12 @@ function CommentForm({ onAddComment }) {
             
             {/* Name input field */}
             <form onSubmit={handleSubmit} className='comment-form'>
-                <input 
+                {/* <input 
                     value={currentName}
                     onChange={(e) => setCurrentName(e.target.value)}
                     placeholder="Your name"
                     required
-                />
+                /> */}
                 
                 {/* Comment textarea */}
                 <textarea 
