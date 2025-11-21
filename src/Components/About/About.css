@@ -1,0 +1,25 @@
+.About {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    text-align:center;
+    }
+
+.About h1 {
+    font-size: 3rem;
+    margin-bottom: 5rem;
+    text-align: center;
+    }
+.About h2 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    }
+.group-members-container {
+    display: inline-block;
+    text-align: left;
+}
+
+.About ul {
+    list-style-position: outside;
+    padding-left: 20px;
+    margin: 0;
+}

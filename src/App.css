@@ -6,6 +6,7 @@
   height: 100vh;
   --primary-bg-color: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   --primary-text-color: white;
+  --secondary-text-color: #dddddd;
   background-color: var(--primary-bg-color);
   color: var(--primary-text-color);
 

@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router';
 import './Comments.css';
 import CommentForm from './CommentForm';
+import { AccountContext } from '../../../Context/AccountContextProvider';
 
 function Comments() {
     // Get the post ID from the URL (e.g., /posts/1 -> postId = "1")
     const params = useParams();
     const postId = params.post_id;
+
+    const { loginState } = useContext(AccountContext);
 
     // State to store all comments for this post
     const [comments, setComments] = useState([]);
@@ -43,24 +46,34 @@ function Comments() {
 
     return (
         <div className='comments-section'>
-            {/* Form for submitting new comments */}
-            <CommentForm onAddComment={handleAddComment} />
-            
-            <h3>Existing Comments:</h3>
-            
-            {/* Show message if no comments, otherwise display the list */}
-            {comments.length === 0 ? (
-                <p>No comments yet. Be the first to comment!</p>
-            ) : (
-                <ul className='comments-list'>
-                    {/* Loop through and display each comment */}
-                    {comments.map((comment) => (
-                        <li key={comment.id}>
-                            <strong>{comment.name}:</strong> {comment.body}
-                        </li>
-                    ))}
-                </ul>
-            )}
+            {loginState ? 
+            (
+                <>
+                    {/* Form for submitting new comments */}
+                    <CommentForm onAddComment={handleAddComment} />
+                    
+                    <h3>Existing Comments:</h3>
+                    
+                    {/* Show message if no comments, otherwise display the list */}
+                    {comments.length === 0 ? (
+                        <p>No comments yet. Be the first to comment!</p>
+                    ) : (
+                        <ul className='comments-list'>
+                            {/* Loop through and display each comment */}
+                            {comments.map((comment) => (
+                                <li key={comment.id}>
+                                    <strong>{comment.name}:</strong> {comment.body}
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+                </>
+               
+            ) : 
+            (
+                <h3>Login to view comments</h3>
+            )
+        }
         </div>
     );
 }
