@@ -1,5 +1,3 @@
-
-
 .login { 
     padding: 5rem;
     display: flex;
@@ -33,4 +31,18 @@
 
 .enterLoginInfo { 
     margin-top: 1rem;
+}
+
+/* Error message styling */
+.error-message {
+    color: #ff6b6b;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+/* Login hint text styling */
+.login-hint {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #dddddd;
 }

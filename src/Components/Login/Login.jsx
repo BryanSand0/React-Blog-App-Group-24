@@ -1,12 +1,15 @@
-import React, { createContext, useContext, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import "./Login.css"
 import {AccountContext} from '../../Context/AccountContextProvider';
-import { Link, redirect, useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router';
+// Import the users JSON file
+import usersData from '../../data/users.json';
 
 function Login() {
     // State for what user is currently typing
     const [enteredUserName, setEnteredUserName] = useState("");
     const [enteredPassword, setEnteredPassword] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
 
     const { handleLogin } = useContext(AccountContext);
     const { handleLogout } = useContext(AccountContext);
@@ -15,28 +18,35 @@ function Login() {
 
     const navigate = useNavigate();
 
-    
-    //const loggedIn = useContext(AccountContext);
-
     // Function that runs when submit button is clicked
     const handleSubmit = (e) => {
-        
-        // Search for comment in 
-        // Create a new account object
-        const newAccount = {
-            username: enteredUserName,
-            password: enteredPassword
-        };
-
         e.preventDefault();
         
-        // Call the function that the parent passed to us
-        handleLogin(newAccount);
+        // Search for matching user in the JSON data
+        const foundUser = usersData.users.find(
+            user => user.username === enteredUserName && user.password === enteredPassword
+        );
 
-        // Clear the input fields
-        setEnteredUserName("");
-        setEnteredPassword("");
-        navigate("/posts", { replace: true } );
+        // If user found, log them in
+        if (foundUser) {
+            const newAccount = {
+                username: enteredUserName,
+                password: enteredPassword
+            };
+            
+            handleLogin(newAccount);
+            setErrorMessage(""); // Clear any previous errors
+            
+            // Clear the input fields
+            setEnteredUserName("");
+            setEnteredPassword("");
+            
+            navigate("/posts", { replace: true });
+        } else {
+            // Show error message if credentials don't match
+            setErrorMessage("Invalid username or password. Please try again.");
+            setEnteredPassword(""); // Clear password field on error
+        }
     };
 
     return (
@@ -46,7 +56,15 @@ function Login() {
                 <>
                     <h1 className='loginInBanner'>Login</h1>
                     <h4 className='loginFlavorText'>Let's get blogging!</h4>
-                    <form className = "loginForm" onSubmit={handleSubmit}> 
+                    
+                    {/* Display error message if login fails */}
+                    {errorMessage && (
+                        <p className="error-message">
+                            {errorMessage}
+                        </p>
+                    )}
+                    
+                    <form className="loginForm" onSubmit={handleSubmit}> 
                         <p>Username</p>
                         <input
                             className='Username' 
@@ -59,6 +77,7 @@ function Login() {
                         <p>Password</p>
                         <input
                             className='Password'
+                            type="password"
                             onChange={(e) => setEnteredPassword(e.target.value)}
                             placeholder="Password"
                             value={enteredPassword}
@@ -67,6 +86,10 @@ function Login() {
 
                         <input className='enterLoginInfo' type="submit" value="Login"/>
                     </form>
+                    
+                    <p className="login-hint">
+                        Try: testuser / password123
+                    </p>
                 </>
             ) : //Logout Screen, says hello to user 
             (
